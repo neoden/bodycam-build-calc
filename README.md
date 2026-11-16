@@ -26,3 +26,7 @@ As a single file: `bodycam-build-calc.html` — built from `web/` with `python3 
 - A slot is available only if the weapon (model skeleton) or an installed part (mesh sockets) has a mounting point named after the slot. There is no receiver mounting data for the SKR-H — no restrictions are applied to it.
 - A few attachments have "override the stat with 0" in the game data (looks like placeholders) — they are marked with ⚠ and not counted.
 - The parsers are heuristic (assets without a property schema); after a big patch it is worth checking the output of `update.sh`.
+
+## License
+
+The code is released under the [MIT License](LICENSE). The weapon and attachment stats in `web/data.js` / `web/data.json` are extracted from Bodycam and belong to its developers; this project is unofficial.
