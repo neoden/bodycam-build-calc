@@ -26,14 +26,14 @@
 </head>
 <body>
 <header>
-  <a class="home" href="index.html" data-i18n="h1">Bodycam · build calculator</a>
+  <a class="home" href="./" data-home data-i18n="h1">Bodycam · build calculator</a>
   <a id="src" class="hlink" href="https://github.com/neoden/bodycam-build-calc" target="_blank" rel="noopener" data-i18n="source">Source code</a>
   <select id="lang" data-i18n-title="language" title="Language"></select>
 </header>
 <main>
   <h1 data-i18n="aboutTitle">About the Bodycam build calculator</h1>
   <p data-i18n="aboutSite">Bodycam Build Calculator is a free, unofficial weapon build planner for Bodycam, the multiplayer FPS game by Reissad Studio. Pick a weapon, try attachments — barrels, muzzles, grips, stocks, magazines, optics — and see how they change recoil, ADS speed, reload time, equip speed, hip fire spread and damage. It can also find the best build for a goal such as minimum recoil or fastest ADS, save builds, compare them and share a build as a link. All stats are extracted from the game files.</p>
-  <a class="btn" href="index.html" data-i18n="openCalc">Open the calculator</a>
+  <a class="btn" href="./" data-home data-i18n="openCalc">Open the calculator</a>
   <h2 data-i18n="aboutHow">How it is calculated</h2>
   <p data-i18n="about1">The data is extracted from the game files (the item table + a GameplayEffect for every weapon and attachment). Multipliers of one stat are summed as in GAS: result = base × (1 + Σ(multiplier − 1)), so −10% and −10% give −20%, not −19%.</p>
   <p data-i18n="about2">&quot;Reload / ADS / equip speed&quot; are speed multipliers: time = base time ÷ multiplier. Base reload and draw times are the lengths of the game's animations (averaged over the calm/stressed variants); the weapon may actually become ready slightly before the animation ends. Base ADS time comes from the curve that moves the weapon into the sights: the moment 95% of the path is covered (the rest is fine settling).</p>
@@ -43,6 +43,8 @@
 <script>
 (function () {
   const t = I18N.t, sel = document.getElementById('lang');
+  // opened as a local file there is no server to map the folder to index.html
+  if (location.protocol === 'file:') for (const a of document.querySelectorAll('a[data-home]')) a.href = 'index.html';
   let saved = null; try { saved = JSON.parse(localStorage.getItem('lang')); } catch {}
   I18N.setLang(saved || I18N.DEFAULT);
   function render() {
