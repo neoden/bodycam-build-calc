@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>About — Bodycam Build Calculator</title>
+<meta name="description" content="What the Bodycam Build Calculator is, where its weapon and attachment stats come from and how builds are calculated.">
+<link rel="canonical" href="https://neoden.github.io/bodycam-build-calc/about.html">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://neoden.github.io/bodycam-build-calc/about.html">
+<meta property="og:title" content="About — Bodycam Build Calculator">
+<meta property="og:image" content="https://neoden.github.io/bodycam-build-calc/preview.png">
+<style>
+  :root { --bg:#14161a; --panel:#1c1f25; --panel2:#232730; --line:#313641; --text:#dfe3ea; --mute:#8b93a1; --acc:#e8b84a; color-scheme: dark; }
+  * { box-sizing: border-box; }
+  body { margin:0; background:var(--bg); color:var(--text); font:15px/1.55 system-ui, "Segoe UI", sans-serif; }
+  header { display:flex; flex-wrap:wrap; gap:10px; align-items:center; padding:10px 16px; border-bottom:1px solid var(--line); background:var(--panel); }
+  header a.home { font-size:16px; font-weight:700; letter-spacing:.02em; color:var(--text); text-decoration:none; margin-right:12px; }
+  select { font:inherit; font-size:14px; color:var(--text); background:var(--panel2); border:1px solid var(--line); border-radius:6px; padding:5px 9px; }
+  .hlink { color:var(--mute); font-size:12px; } .hlink:hover { color:var(--acc); } #src { margin-left:auto; }
+  main { max-width:760px; margin:0 auto; padding:28px 16px 48px; }
+  h1 { font-size:24px; margin:0 0 12px; } h2 { font-size:12px; text-transform:uppercase; letter-spacing:.08em; color:var(--mute); margin:28px 0 8px; font-weight:600; }
+  p { margin:0 0 12px; }
+  a.btn { display:inline-block; margin-top:8px; background:var(--acc); color:#1a1505; font-weight:600; text-decoration:none; border-radius:6px; padding:7px 14px; }
+</style>
+</head>
+<body>
+<header>
+  <a class="home" href="index.html" data-i18n="h1">Bodycam · build calculator</a>
+  <a id="src" class="hlink" href="https://github.com/neoden/bodycam-build-calc" target="_blank" rel="noopener" data-i18n="source">Source code</a>
+  <select id="lang" data-i18n-title="language" title="Language"></select>
+</header>
+<main>
+  <h1 data-i18n="aboutTitle">About the Bodycam build calculator</h1>
+  <p data-i18n="aboutSite">Bodycam Build Calculator is a free, unofficial weapon build planner for Bodycam, the multiplayer FPS game by Reissad Studio. Pick a weapon, try attachments — barrels, muzzles, grips, stocks, magazines, optics — and see how they change recoil, ADS speed, reload time, equip speed, hip fire spread and damage. It can also find the best build for a goal such as minimum recoil or fastest ADS, save builds, compare them and share a build as a link. All stats are extracted from the game files.</p>
+  <a class="btn" href="index.html" data-i18n="openCalc">Open the calculator</a>
+  <h2 data-i18n="aboutHow">How it is calculated</h2>
+  <p data-i18n="about1">The data is extracted from the game files (the item table + a GameplayEffect for every weapon and attachment). Multipliers of one stat are summed as in GAS: result = base × (1 + Σ(multiplier − 1)), so −10% and −10% give −20%, not −19%.</p>
+  <p data-i18n="about2">&quot;Reload / ADS / equip speed&quot; are speed multipliers: time = base time ÷ multiplier. Base reload and draw times are the lengths of the game's animations (averaged over the calm/stressed variants); the weapon may actually become ready slightly before the animation ends. Base ADS time comes from the curve that moves the weapon into the sights: the moment 95% of the path is covered (the rest is fine settling).</p>
+  <p data-i18n="about3">Compatibility follows the game's tags (attachment ↔ weapon). A slot is available only if the weapon or an installed part has a mounting point for it (model sockets from the game files); parts in unavailable slots are not counted.</p>
+</main>
+<script src="i18n.js"></script>
+<script>
+(function () {
+  const t = I18N.t, sel = document.getElementById('lang');
+  let saved = null; try { saved = JSON.parse(localStorage.getItem('lang')); } catch {}
+  I18N.setLang(saved || I18N.DEFAULT);
+  function render() {
+    document.documentElement.lang = I18N.lang; document.title = t('aboutPageTitle');
+    for (const e of document.querySelectorAll('[data-i18n]')) e.textContent = t(e.dataset.i18n);
+    for (const e of document.querySelectorAll('[data-i18n-title]')) e.title = t(e.dataset.i18nTitle);
+  }
+  for (const [k, name] of Object.entries(I18N.LANGS)) sel.append(new Option(name, k));
+  sel.value = I18N.lang;
+  sel.addEventListener('change', () => { const l = I18N.setLang(sel.value); try { localStorage.setItem('lang', JSON.stringify(l)); } catch {} render(); });
+  render();
+})();
+</script>
+</body>
+</html>
