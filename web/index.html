@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bodycam — build calculator</title>
+<style>
+  :root { --bg:#14161a; --panel:#1c1f25; --panel2:#232730; --line:#313641; --text:#dfe3ea; --mute:#8b93a1;
+          --good:#5fd08a; --bad:#f0706b; --acc:#e8b84a; --warn:#f0a03c; }
+  * { box-sizing: border-box; } :root { color-scheme: dark; }
+  body { margin:0; background:var(--bg); color:var(--text); font:14px/1.4 system-ui, "Segoe UI", sans-serif; }
+  header { display:flex; flex-wrap:wrap; gap:10px; align-items:center; padding:10px 16px; border-bottom:1px solid var(--line); background:var(--panel); }
+  #lang { margin-left:auto; }
+  header h1 { font-size:16px; margin:0 12px 0 0; letter-spacing:.02em; }
+  select, button, input { font:inherit; color:var(--text); background:var(--panel2); border:1px solid var(--line); border-radius:6px; padding:5px 9px; }
+  button { cursor:pointer; } button:hover { border-color:var(--acc); }
+  button.primary { background:var(--acc); color:#1a1505; border-color:var(--acc); font-weight:600; }
+  main { display:grid; grid-template-columns: 290px minmax(380px,1fr) 410px; gap:12px; padding:12px 16px; align-items:start; }
+  @media (max-width:1150px) { main { grid-template-columns: 1fr; } }
+  section { background:var(--panel); border:1px solid var(--line); border-radius:10px; padding:12px; min-width:0; }
+  h2 { font-size:12px; text-transform:uppercase; letter-spacing:.08em; color:var(--mute); margin:0 0 8px; font-weight:600; }
+  .slot { display:grid; grid-template-columns:1fr auto; gap:2px 6px; padding:7px 8px; border-radius:7px; cursor:pointer; border:1px solid transparent; }
+  .slot:hover { background:var(--panel2); } .slot.active { border-color:var(--acc); background:var(--panel2); }
+  .slot .sn { font-size:11px; color:var(--mute); grid-column:1/3; }
+  .slot .an { overflow:hidden; text-overflow:ellipsis; white-space:nowrap; } .slot .an.empty { color:var(--mute); }
+  .slot.off .an { text-decoration:line-through; color:var(--mute); } .aka.sock { color:#7fb4e8; } .same { color:var(--text); opacity:.75; font-size:12px; }
+  .slot .sn { white-space:normal; }
+  .savedrow { display:flex; gap:4px; align-items:center; padding:3px 4px; border-radius:6px; }
+  .savedrow .an { flex:1; cursor:pointer; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; } .savedrow .an:hover { color:var(--acc); }
+  .savedrow .x { padding:0 6px; font-size:12px; line-height:18px; } .savedrow.base { background:var(--panel2); } .savedrow.base .x:first-of-type { color:var(--acc); border-color:var(--acc); }
+  .slot .x { padding:0 6px; font-size:12px; line-height:18px; } .tagc { color:var(--acc); font-size:11px; }
+  .muted { color:var(--mute); } .small { font-size:12px; }
+  .good { color:var(--good); } .bad { color:var(--bad); } .warn { color:var(--warn); }
+  table { border-collapse:collapse; width:100%; } th, td { padding:4px 7px; text-align:right; white-space:nowrap; }
+  th:first-child, td:first-child { text-align:left; } tbody tr { border-top:1px solid var(--line); }
+  th { font-size:11px; color:var(--mute); font-weight:600; position:sticky; top:0; background:var(--panel); cursor:pointer; user-select:none; }
+  th.sorted { color:var(--acc); }
+  .tblwrap { overflow:auto; max-height:calc(100vh - 190px); }
+  #stats td:first-child { white-space:normal; } #stats td, #stats th { padding:4px 5px; font-size:13px; }
+  #atts tbody tr { cursor:pointer; } #atts tbody tr:hover { background:var(--panel2); }
+  #atts tr.sel td:first-child { color:var(--acc); font-weight:600; } #atts tr.def td:first-child::after { content:var(--stock-tag, " · stock"); color:var(--mute); font-weight:400; font-size:11px; }
+  .aka { color:var(--mute); font-weight:400; font-size:11px; }
+  #atts td:first-child { max-width:380px; overflow:hidden; text-overflow:ellipsis; }
+  .cards { display:grid; grid-template-columns:1fr 1fr; gap:8px; margin-bottom:12px; }
+  .card { background:var(--panel2); border-radius:8px; padding:8px 10px; } .card .l { font-size:11px; color:var(--mute); }
+  .card .v { font-size:19px; font-weight:600; } .card .u { font-size:11px; color:var(--mute); font-weight:400; } .card .d { font-size:12px; }
+  .goal { display:flex; flex-wrap:wrap; gap:6px; margin-top:4px; }
+  .chip { padding:4px 10px; border-radius:999px; font-size:13px; color:var(--mute); }
+  .chip.lv1 { color:var(--text); border-color:var(--acc); }
+  .chip.lv2 { background:var(--acc); color:#1a1505; border-color:var(--acc); font-weight:600; }
+  .sub { font-size:11px; color:var(--mute); margin:10px 0 4px; } .presets { display:flex; flex-wrap:wrap; gap:6px; } .presets button { padding:3px 8px; font-size:12px; }
+  .bar { display:flex; gap:8px; align-items:center; flex-wrap:wrap; margin-bottom:8px; } .bar input[type=search] { flex:1; min-width:120px; }
+  details { margin-top:10px; } summary { cursor:pointer; color:var(--mute); } .note { font-size:12px; color:var(--mute); margin:6px 0 0; }
+  .warnbox { border:1px solid var(--warn); border-radius:8px; padding:6px 9px; margin-bottom:10px; font-size:12px; }
+  label.chk { display:flex; gap:6px; align-items:center; font-size:12px; color:var(--mute); }
+</style>
+</head>
+<body>
+<header>
+  <h1 data-i18n="h1">Bodycam · build calculator</h1>
+  <select id="weapon"></select>
+  <button id="stock" data-i18n="stockBtn">Stock</button>
+  <button id="share" data-i18n="share">Copy link</button>
+  <span class="muted small" id="ver"></span>
+  <select id="lang" data-i18n-title="language" title="Language"></select>
+</header>
+<main>
+  <section>
+    <h2 data-i18n="build">Build</h2>
+    <div id="slots"></div>
+    <label class="chk" style="margin-top:8px"><input type="checkbox" id="showCos"> <span data-i18n="showCos">slots that don't affect stats</span></label>
+    <label class="chk" style="margin-top:4px" data-i18n-title="showHiddenTitle"><input type="checkbox" id="showHidden"> <span data-i18n="showHidden">attachments hidden in game</span></label>
+    <h2 style="margin-top:16px" data-i18n="savedBuilds">Saved builds</h2>
+    <div style="display:flex; gap:6px; margin-bottom:6px"><input id="saveName" data-i18n-placeholder="namePh" placeholder="name" style="flex:1; min-width:0"><button id="saveBtn" data-i18n="save">Save</button></div>
+    <div id="saved"></div>
+    <h2 style="margin-top:16px" data-i18n="goalTitle">Optimization goal</h2>
+    <div class="goal" id="goal"></div>
+    <div class="sub" data-i18n="orPreset">or a preset:</div>
+    <div class="presets" id="presets"></div>
+    <div style="display:flex; gap:8px; margin-top:10px">
+      <button class="primary" id="apply" data-i18n="apply">Find the best build</button>
+      <button id="clearGoal" data-i18n="clearGoal">Clear goal</button>
+    </div>
+    <p class="note" data-i18n="goalNote"></p>
+  </section>
+
+  <section>
+    <div class="bar">
+      <h2 style="margin:0" id="attTitle">Attachments</h2>
+      <input type="search" id="q" data-i18n-placeholder="searchPh" placeholder="search by name…">
+      <label class="chk" data-i18n-title="dedupeTitle"><input type="checkbox" id="dedupe"> <span data-i18n="dedupe">merge identical</span></label>
+      <label class="chk"><input type="checkbox" id="allSlots"> <span data-i18n="allSlots">all slots</span></label>
+    </div>
+    <div class="warnbox warn" id="slotNote" hidden></div>
+    <div class="tblwrap"><table id="atts"><thead></thead><tbody></tbody></table></div>
+    <p class="note" data-i18n="attNote"></p>
+  </section>
+
+  <section>
+    <h2 data-i18n="result">Build result</h2>
+    <div id="diff" style="margin-bottom:8px"></div>
+    <div id="warns"></div>
+    <div class="cards" id="cards"></div>
+    <label class="small muted"><span data-i18n="adsBaseLabel">Your own base ADS time, s (optional — replaces the animation estimate):</span>
+      <input type="number" id="adsBase" step="0.01" min="0" style="width:80px"></label>
+    <table id="stats" style="margin-top:12px"><thead><tr><th data-i18n="thStat">Stat</th><th id="thBase">Stock</th><th data-i18n="thBuild">Build</th><th id="thDelta">Effect vs stock</th></tr></thead><tbody></tbody></table>
+    <details>
+      <summary data-i18n="aboutSummary">Where the data comes from and how it is calculated</summary>
+      <p class="note" data-i18n="about1"></p>
+      <p class="note" data-i18n="about2"></p>
+      <p class="note" data-i18n="about3"></p>
+    </details>
+  </section>
+</main>
+<script src="data.js"></script>
+<script src="i18n.js"></script>
+<script src="core.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
