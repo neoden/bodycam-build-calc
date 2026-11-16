@@ -3,7 +3,7 @@
   const LANGS = { en: 'English', ru: 'Русский' };
   const STR = {
     en: {
-      title: 'Bodycam — build calculator', h1: 'Bodycam · build calculator', language: 'Language', source: 'Source code',
+      title: 'Bodycam Build Calculator — weapon attachments & stats', h1: 'Bodycam · build calculator', language: 'Language', source: 'Source code',
       stockBtn: 'Stock', share: 'Copy link', copied: 'Copied ✓', linkPrompt: 'Build link:',
       build: 'Build', showCos: 'slots that don\'t affect stats', showHidden: 'attachments hidden in game',
       showHiddenTitle: 'Attachments that exist in the game files but are disabled in the shop or not listed there',
@@ -19,6 +19,9 @@
       about1: 'The data is extracted from the game files (the item table + a GameplayEffect for every weapon and attachment). Multipliers of one stat are summed as in GAS: result = base × (1 + Σ(multiplier − 1)), so −10% and −10% give −20%, not −19%.',
       about2: '"Reload / ADS / equip speed" are speed multipliers: time = base time ÷ multiplier. Base reload and draw times are the lengths of the game\'s animations (averaged over the calm/stressed variants); the weapon may actually become ready slightly before the animation ends. Base ADS time comes from the curve that moves the weapon into the sights: the moment 95% of the path is covered (the rest is fine settling).',
       about3: 'Compatibility follows the game\'s tags (attachment ↔ weapon). A slot is available only if the weapon or an installed part has a mounting point for it (model sockets from the game files); parts in unavailable slots are not counted.',
+
+      aboutTitle: 'About the Bodycam build calculator',
+      aboutSite: 'Bodycam Build Calculator is a free, unofficial weapon build planner for Bodycam, the multiplayer FPS game by Reissad Studio. Pick a weapon, try attachments — barrels, muzzles, grips, stocks, magazines, optics — and see how they change recoil, ADS speed, reload time, equip speed, hip fire spread and damage. It can also find the best build for a goal such as minimum recoil or fastest ADS, save builds, compare them and share a build as a link. All stats are extracted from the game files.',
 
       noMountTitle: 'The current build has no mounting point for this slot. Some parts in these slots provide it: {slots}',
       noMount: ' · no mount (provided by: {slots})', empty: '— empty —', emptyWord: 'empty', stockTag: 'stock', revert: 'revert to stock',
@@ -92,6 +95,9 @@
       about1: 'Данные вынуты из файлов игры (таблица предметов + GameplayEffect на каждое оружие и обвес). Множители одного параметра складываются как в GAS: итог = база × (1 + Σ(множитель − 1)), то есть −10% и −10% дают −20%, а не −19%.',
       about2: '«Скорость перезарядки / ADS / доставания» — множители скорости: время = базовое время ÷ множитель. Базовое время перезарядки и доставания — длительность анимаций из игры (среднее по вариантам calm/stressed); реальный момент готовности может наступать чуть раньше конца анимации. Базовое время ADS — по кривой движения оружия в прицел: момент, когда пройдено 95% пути (дальше идёт мелкая доводка).',
       about3: 'Совместимость — по тегам игры (обвес ↔ оружие). Слот доступен, только если у оружия или у установленной детали есть для него крепление (сокеты моделей из файлов игры); детали в недоступных слотах в расчёт не входят.',
+
+      aboutTitle: 'О калькуляторе билдов Bodycam',
+      aboutSite: 'Bodycam Build Calculator — бесплатный неофициальный калькулятор билдов оружия для Bodycam, сетевого шутера от Reissad Studio. Выбери оружие, примерь обвесы — стволы, дульные устройства, рукоятки, приклады, магазины, прицелы — и посмотри, как они меняют отдачу, скорость прицеливания (ADS), перезарядку, доставание, разброс от бедра и урон. Калькулятор умеет подбирать лучший билд под цель (минимальная отдача, самый быстрый ADS), сохранять билды, сравнивать их и делиться билдом по ссылке. Все статы вынуты из файлов игры.',
 
       noMountTitle: 'В текущем билде для этого слота нет крепления. Его дают некоторые детали в слотах: {slots}',
       noMount: ' · нет крепления (даёт: {slots})', empty: '— пусто —', emptyWord: 'пусто', stockTag: 'сток', revert: 'вернуть сток',
