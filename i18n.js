@@ -3,7 +3,7 @@
   const LANGS = { en: 'English', ru: 'Русский' };
   const STR = {
     en: {
-      title: 'Bodycam — build calculator', h1: 'Bodycam · build calculator', language: 'Language',
+      title: 'Bodycam — build calculator', h1: 'Bodycam · build calculator', language: 'Language', source: 'Source code',
       stockBtn: 'Stock', share: 'Copy link', copied: 'Copied ✓', linkPrompt: 'Build link:',
       build: 'Build', showCos: 'slots that don\'t affect stats', showHidden: 'attachments hidden in game',
       showHiddenTitle: 'Attachments that exist in the game files but are disabled in the shop or not listed there',
@@ -76,7 +76,7 @@
     },
 
     ru: {
-      title: 'Bodycam — калькулятор билдов', h1: 'Bodycam · калькулятор билдов', language: 'Язык',
+      title: 'Bodycam — калькулятор билдов', h1: 'Bodycam · калькулятор билдов', language: 'Язык', source: 'Исходный код',
       stockBtn: 'Сток', share: 'Скопировать ссылку', copied: 'Скопировано ✓', linkPrompt: 'Ссылка на билд:',
       build: 'Билд', showCos: 'слоты без влияния на статы', showHidden: 'обвесы, скрытые в игре',
       showHiddenTitle: 'Обвесы, которые есть в файлах игры, но отключены в магазине или не выставлены в нём',
