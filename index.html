@@ -20,7 +20,7 @@
   * { box-sizing: border-box; } :root { color-scheme: dark; }
   body { margin:0; background:var(--bg); color:var(--text); font:14px/1.4 system-ui, "Segoe UI", sans-serif; }
   header { display:flex; flex-wrap:wrap; gap:10px; align-items:center; padding:10px 16px; border-bottom:1px solid var(--line); background:var(--panel); }
-  #src { margin-left:auto; color:var(--mute); font-size:12px; } #src:hover { color:var(--acc); }
+  .hlink { color:var(--mute); font-size:12px; } .hlink:hover { color:var(--acc); } #about { margin-left:auto; }
   header h1 { font-size:16px; margin:0 12px 0 0; letter-spacing:.02em; }
   select, button, input { font:inherit; color:var(--text); background:var(--panel2); border:1px solid var(--line); border-radius:6px; padding:5px 9px; }
   button { cursor:pointer; } button:hover { border-color:var(--acc); }
@@ -62,7 +62,6 @@
   .bar { display:flex; gap:8px; align-items:center; flex-wrap:wrap; margin-bottom:8px; } .bar input[type=search] { flex:1; min-width:120px; }
   details { margin-top:10px; } summary { cursor:pointer; color:var(--mute); } .note { font-size:12px; color:var(--mute); margin:6px 0 0; }
   .warnbox { border:1px solid var(--warn); border-radius:8px; padding:6px 9px; margin-bottom:10px; font-size:12px; }
-  footer { padding:4px 16px 20px; max-width:900px; } footer h2 { margin-bottom:4px; }
   label.chk { display:flex; gap:6px; align-items:center; font-size:12px; color:var(--mute); }
 </style>
 </head>
@@ -73,7 +72,8 @@
   <button id="stock" data-i18n="stockBtn">Stock</button>
   <button id="share" data-i18n="share">Copy link</button>
   <span class="muted small" id="ver"></span>
-  <a id="src" href="https://github.com/neoden/bodycam-build-calc" target="_blank" rel="noopener" data-i18n="source">Source code</a>
+  <a id="about" class="hlink" href="about.html" data-i18n="about">About</a>
+  <a id="src" class="hlink" href="https://github.com/neoden/bodycam-build-calc" target="_blank" rel="noopener" data-i18n="source">Source code</a>
   <select id="lang" data-i18n-title="language" title="Language"></select>
 </header>
 <main>
@@ -124,10 +124,6 @@
     </details>
   </section>
 </main>
-<footer>
-  <h2 data-i18n="aboutTitle">About the Bodycam build calculator</h2>
-  <p class="note" data-i18n="aboutSite">Bodycam Build Calculator is a free, unofficial weapon build planner for Bodycam, the multiplayer FPS game by Reissad Studio. Pick a weapon, try attachments — barrels, muzzles, grips, stocks, magazines, optics — and see how they change recoil, ADS speed, reload time, equip speed, hip fire spread and damage. It can also find the best build for a goal such as minimum recoil or fastest ADS, save builds, compare them and share a build as a link. All stats are extracted from the game files.</p>
-</footer>
 <script src="data.js"></script>
 <script src="i18n.js"></script>
 <script src="core.js"></script>
