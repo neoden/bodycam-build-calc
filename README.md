@@ -29,4 +29,4 @@ As a single file: `bodycam-build-calc.html` — built from `web/` with `python3 
 
 ## License
 
-The code is released under the [MIT License](LICENSE). The weapon and attachment stats in `web/data.js` / `web/data.json` are extracted from Bodycam and belong to its developers; this project is unofficial.
+The code is released under the [MIT License](LICENSE). Game data in `web/data.js` / `web/data.json` is extracted from Bodycam and is not covered by this license. This is an unofficial fan project, not affiliated with the game's developers.
