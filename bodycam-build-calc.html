@@ -583,7 +583,9 @@ window.BODYCAM_DATA = {"build":"26654542","stats":{"Damage":{"name":"Bullet Dama
     const p = new URLSearchParams(); p.set('w', S.w.id);
     const st = C.stockBuild(S.w);
     for (const [s, id] of Object.entries(S.build)) if (id !== st[s]) p.set(s, id || '-');
-    history.replaceState(null, '', '#' + p.toString());
+    // on a web server keep the short address of the folder, so shared links never carry index.html
+    const path = location.protocol === 'file:' ? location.pathname : location.pathname.replace(/\/index\.html$/, '/');
+    history.replaceState(null, '', path + location.search + '#' + p.toString());
   }
   // A link with a build in its hash wins; without one the last state kept in localStorage is restored.
   function loadHash() {
