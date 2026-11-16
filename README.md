@@ -2,7 +2,7 @@
 
 A weapon build calculator for Bodycam. To open it: `web/index.html` (just a file in the browser, no server needed).
 
-As a single file: `bodycam-build-calc.html` — built from `web/` with `python3 tools/bundle.py web bodycam-build-calc.html` (and automatically at the end of `update.sh`). Edit the files in `web/`, not this one.
+As a single file: `bodycam-build-calc.html` — built from `web/` with `python3 tools/bundle.py web bodycam-build-calc.html` (and automatically at the end of `update.sh`). Edit the files in `web/`, not this one. The same command stamps the script links in `web/index.html` and `web/about.html` with content hashes (`app.js?v=…`), so run it before committing a change to any script — otherwise browsers may pair a new page with a cached old script.
 
 - `web/` — the page (`index.html`, `app.js`, `core.js` — calculation logic without DOM, `i18n.js` — UI strings) and the data (`data.js`, `data.json`).
 - The UI language is picked in the page header (English by default, Russian); the choice is remembered in the browser. The current weapon, build and view options are kept in the browser's localStorage too, so the page reopens as you left it; a link with a build in it takes priority. A new language is one more block in `web/i18n.js`.
