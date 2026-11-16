@@ -1,13 +1,11 @@
 # Bodycam build calculator
 
-English · [Русский](README.ru.md)
-
 A weapon build calculator for Bodycam. To open it: `web/index.html` (just a file in the browser, no server needed).
 
 As a single file: `bodycam-build-calc.html` — built from `web/` with `python3 tools/bundle.py web bodycam-build-calc.html` (and automatically at the end of `update.sh`). Edit the files in `web/`, not this one.
 
 - `web/` — the page (`index.html`, `app.js`, `core.js` — calculation logic without DOM, `i18n.js` — UI strings) and the data (`data.js`, `data.json`).
-- The UI language is picked in the page header (English by default, Russian); the choice is remembered in the browser. A new language is one more block in `web/i18n.js`.
+- The UI language is picked in the page header (English by default, Russian); the choice is remembered in the browser. The current weapon, build and view options are kept in the browser's localStorage too, so the page reopens as you left it; a link with a build in it takes priority. A new language is one more block in `web/i18n.js`.
 - `tools/` — data extraction from the installed game (only reads the `.pak` files):
   `paklist.py`/`pakextract.py` (index and unpacking of pak v11 + Oodle), `uasset.py` (asset header),
   `items.py` (the `DT_WeaponItems` item table), `geparse.py` (GameplayEffect modifiers), `build_data.py` (builds `data.js`).

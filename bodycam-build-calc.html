@@ -565,14 +565,31 @@ window.BODYCAM_DATA = {"build":"26654542","stats":{"Damage":{"name":"Bullet Dama
     for (const [s, id] of Object.entries(S.build)) if (id !== st[s]) p.set(s, id || '-');
     history.replaceState(null, '', '#' + p.toString());
   }
+  // A link with a build in its hash wins; without one the last state kept in localStorage is restored.
   function loadHash() {
     const p = new URLSearchParams(location.hash.slice(1));
-    const w = C.weapon[p.get('w')] || D.weapons.find(x => x.id === 'M4A1') || D.weapons[0];
+    const st = p.has('w') ? null : store.get('state', null);
+    const w = C.weapon[p.get('w')] || (st && C.weapon[st.w]) || D.weapons.find(x => x.id === 'M4A1') || D.weapons[0];
     setWeapon(w, false);
-    for (const s of C.slots(w)) if (p.has(s.slot)) {
-      const v = p.get(s.slot);
-      if (v === '-') S.build[s.slot] = null; else if (s.options.some(a => a.id === v)) S.build[s.slot] = v;
+    const saved = st && st.w === w.id && st.build || null;
+    for (const s of C.slots(w)) {
+      let v;
+      if (saved) { if (!(s.slot in saved)) continue; v = saved[s.slot]; }
+      else { if (!p.has(s.slot)) continue; v = p.get(s.slot) === '-' ? null : p.get(s.slot); }
+      if (v === null) S.build[s.slot] = null; else if (s.options.some(a => a.id === v)) S.build[s.slot] = v;
     }
+  }
+  // ---------- localStorage: everything needed to reopen the page as it was left
+  function persist() {
+    store.set('state', { w: S.w.id, build: S.build, slot: S.slot, sort: S.sort, base: S.base,
+      showCos: $('showCos').checked, showHidden: $('showHidden').checked, allSlots: $('allSlots').checked });
+  }
+  function restoreUi() {                 // options that must be in place before the build is loaded
+    const st = store.get('state', null) || {};
+    $('showCos').checked = !!st.showCos; $('showHidden').checked = C.opt.showHidden = !!st.showHidden; $('allSlots').checked = !!st.allSlots;
+    if (st.sort && typeof st.sort.key === 'string' && (st.sort.dir === 1 || st.sort.dir === -1)) S.sort = { key: st.sort.key, dir: st.sort.dir };
+    if (S.saved.some(b => b.id === st.base)) S.base = st.base;
+    return st;
   }
 
   function setWeapon(w, render = true) {
@@ -654,7 +671,7 @@ window.BODYCAM_DATA = {"build":"26654542","stats":{"Damage":{"name":"Bullet Dama
     });
     const th = (k, text, title) => el('th', { class: k === key ? 'sorted' : '', title, onclick: () => {
       S.sort = S.sort.key === k ? { key: k, dir: -S.sort.dir } : { key: k, dir: k === 'name' || k === 'slot' ? 1 : (C.lowerBetter(k) ? 1 : -1) };
-      renderAtts(); } }, text + (k === key ? (dir > 0 ? ' ▲' : ' ▼') : ''));
+      renderAtts(); persist(); } }, text + (k === key ? (dir > 0 ? ' ▲' : ' ▼') : ''));
     const head = el('tr', {}, th('name', t('thAtt')));
     if (all) head.append(th('slot', t('thSlot')));
     if (useScore) head.append(th('score', t('thScore'), t('scoreTitle')));
@@ -759,8 +776,8 @@ window.BODYCAM_DATA = {"build":"26654542","stats":{"Damage":{"name":"Bullet Dama
       const w = C.weapon[b.w]; if (!w) continue;
       box.append(el('div', { class: 'savedrow' + (S.base === b.id ? ' base' : '') },
         el('span', { class: 'an', title: t('openBuild'), onclick: () => { setWeapon(w, false); S.build = { ...C.stockBuild(w), ...b.build }; renderAll(); } }, b.name, el('span', { class: 'muted small' }, ' · ' + w.name)),
-        el('button', { class: 'x', title: t('compareTip'), onclick: () => { S.base = S.base === b.id ? null : b.id; renderSaved(); renderStats(); } }, S.base === b.id ? t('baselineOn') : t('compare')),
-        el('button', { class: 'x', title: t('del'), onclick: () => { S.saved = S.saved.filter(x => x !== b); if (S.base === b.id) S.base = null; store.set('saved', S.saved); renderSaved(); renderStats(); } }, '×')));
+        el('button', { class: 'x', title: t('compareTip'), onclick: () => { S.base = S.base === b.id ? null : b.id; renderSaved(); renderStats(); persist(); } }, S.base === b.id ? t('baselineOn') : t('compare')),
+        el('button', { class: 'x', title: t('del'), onclick: () => { S.saved = S.saved.filter(x => x !== b); if (S.base === b.id) S.base = null; store.set('saved', S.saved); renderSaved(); renderStats(); persist(); } }, '×')));
     }
   }
   function saveBuild() {
@@ -769,7 +786,7 @@ window.BODYCAM_DATA = {"build":"26654542","stats":{"Damage":{"name":"Bullet Dama
     store.set('saved', S.saved); $('saveName').value = ''; renderSaved();
   }
 
-  function renderAll() { renderSlots(); renderAtts(); renderStats(); saveHash(); }
+  function renderAll() { renderSlots(); renderAtts(); renderStats(); saveHash(); persist(); }
 
   // ---------- language: static texts are marked in the HTML with data-i18n / data-i18n-title / data-i18n-placeholder
   function renderStatic() {
@@ -795,9 +812,9 @@ window.BODYCAM_DATA = {"build":"26654542","stats":{"Damage":{"name":"Bullet Dama
   $('lang').addEventListener('change', e => { store.set('lang', I18N.setLang(e.target.value)); renderStatic(); renderGoal(); renderSaved(); renderAll(); });
   $('stock').addEventListener('click', () => { S.build = C.stockBuild(S.w); renderAll(); });
   $('share').addEventListener('click', async () => { try { await navigator.clipboard.writeText(location.href); $('share').textContent = t('copied'); } catch { prompt(t('linkPrompt'), location.href); } setTimeout(() => $('share').textContent = t('share'), 1500); });
-  $('showCos').addEventListener('change', renderSlots);
+  $('showCos').addEventListener('change', () => { renderSlots(); persist(); });
   $('showHidden').addEventListener('change', e => { C.opt.showHidden = e.target.checked; renderAll(); });
-  $('allSlots').addEventListener('change', renderAtts);
+  $('allSlots').addEventListener('change', () => { renderAtts(); persist(); });
   $('dedupe').checked = store.get('dedupe', true);
   $('dedupe').addEventListener('change', e => { store.set('dedupe', e.target.checked); renderAtts(); });
   $('q').addEventListener('input', e => { S.q = e.target.value; renderAtts(); });
@@ -809,7 +826,10 @@ window.BODYCAM_DATA = {"build":"26654542","stats":{"Damage":{"name":"Bullet Dama
   $('clearGoal').addEventListener('click', () => setLevels({}));
   $('saveBtn').addEventListener('click', saveBuild);
   $('saveName').addEventListener('keydown', e => { if (e.key === 'Enter') saveBuild(); });
-  renderStatic(); renderGoal(); loadHash(); renderSaved(); renderAll();
+  const st0 = restoreUi();
+  renderStatic(); renderGoal(); loadHash();
+  if (st0.w === S.w.id && C.slots(S.w).some(s => s.slot === st0.slot)) S.slot = st0.slot;
+  renderSaved(); renderAll();
   window.addEventListener('hashchange', () => { loadHash(); renderAll(); });
 })();
 
