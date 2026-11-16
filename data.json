@@ -1826,12 +1826,8 @@
    "sockets": [
     "Barrel",
     "Magazine",
-    "Muzzle",
-    "Optic",
-    "Siderail",
     "Stock",
-    "Trigger",
-    "Underbarrel"
+    "Trigger"
    ]
   },
   {
@@ -3378,9 +3374,7 @@
     "Hunter"
    ],
    "skins": 4,
-   "sockets": [
-    "Forearm"
-   ],
+   "sockets": [],
    "avail": true,
    "nameSrc": "first",
    "name": "Pump"
@@ -3604,9 +3598,7 @@
     "Drawing"
    ],
    "skins": 4,
-   "sockets": [
-    "Grip"
-   ],
+   "sockets": [],
    "avail": true,
    "name": "BK-101"
   },
@@ -5717,8 +5709,19 @@
     "Item.PrimaryWeapon.Machine pistol",
     "Item.SecondaryWeapon.Pistols"
    ],
-   "ge": null,
-   "mods": [],
+   "ge": "GE_AttachmentStat_Short_Muzzle_TBA_Ultra_5",
+   "mods": [
+    {
+     "a": "CameraRecoilStepVertical",
+     "op": "mul",
+     "v": 0.95
+    },
+    {
+     "a": "VerticalRecoil",
+     "op": "mul",
+     "v": 0.95
+    }
+   ],
    "names": [
     "BAT"
    ],
@@ -6215,8 +6218,29 @@
     "Item.SecondaryWeapon.Pistols.M19",
     "Item.SecondaryWeapon.Pistols.Tec9"
    ],
-   "ge": null,
-   "mods": [],
+   "ge": "GE_AttachmentStat_Standard_Muzzle_BANISH_45",
+   "mods": [
+    {
+     "a": "CameraRecoilStepHorizontal",
+     "op": "mul",
+     "v": 1.1
+    },
+    {
+     "a": "SpreadHipX",
+     "op": "mul",
+     "v": 0.8
+    },
+    {
+     "a": "SpreadHipY",
+     "op": "mul",
+     "v": 0.8
+    },
+    {
+     "a": "ADSSpeed",
+     "op": "mul",
+     "v": 0.95
+    }
+   ],
    "names": [
     "Warbeat"
    ],
@@ -6566,8 +6590,29 @@
     "Item.PrimaryWeapon.Machine pistol",
     "Item.SecondaryWeapon.Pistols"
    ],
-   "ge": null,
-   "mods": [],
+   "ge": "GE_AttachmentStat_Standard_Muzzle_Hybrid_46",
+   "mods": [
+    {
+     "a": "CameraRecoilStepVertical",
+     "op": "mul",
+     "v": 0.75
+    },
+    {
+     "a": "CameraRecoilStepHorizontal",
+     "op": "mul",
+     "v": 0.85
+    },
+    {
+     "a": "SpreadHipX",
+     "op": "mul",
+     "v": 1.25
+    },
+    {
+     "a": "SpreadHipY",
+     "op": "mul",
+     "v": 1.2
+    }
+   ],
    "names": [
     "Luks"
    ],
@@ -6708,8 +6753,29 @@
     "Item.PrimaryWeapon.Machine pistol",
     "Item.SecondaryWeapon.Pistols"
    ],
-   "ge": null,
-   "mods": [],
+   "ge": "GE_AttachmentStat_Standard_Muzzle_Osprey_9",
+   "mods": [
+    {
+     "a": "CameraRecoilStepVertical",
+     "op": "mul",
+     "v": 0.8
+    },
+    {
+     "a": "ADSSpeed",
+     "op": "mul",
+     "v": 0.85
+    },
+    {
+     "a": "SpreadHipX",
+     "op": "mul",
+     "v": 0.9
+    },
+    {
+     "a": "SpreadHipY",
+     "op": "mul",
+     "v": 0.9
+    }
+   ],
    "names": [
     "Ospray"
    ],
@@ -6770,8 +6836,29 @@
     "Item.PrimaryWeapon.Shotguns",
     "Item.SecondaryWeapon.Revolvers"
    ],
-   "ge": null,
-   "mods": [],
+   "ge": "GE_AttachmentStat_Standard_Muzzle_SIG_SRD_9",
+   "mods": [
+    {
+     "a": "CameraRecoilStepVertical",
+     "op": "mul",
+     "v": 1.05
+    },
+    {
+     "a": "VerticalRecoil",
+     "op": "mul",
+     "v": 1.05
+    },
+    {
+     "a": "SpreadHipX",
+     "op": "mul",
+     "v": 0.8
+    },
+    {
+     "a": "SpreadHipY",
+     "op": "mul",
+     "v": 0.8
+    }
+   ],
    "names": [
     "GIS"
    ],
@@ -7007,8 +7094,24 @@
     "Item.PrimaryWeapon.Machine pistol",
     "Item.SecondaryWeapon.Pistols"
    ],
-   "ge": null,
-   "mods": [],
+   "ge": "GE_AttachmentStat_Standard_Muzzle_TBA_Ultra_5",
+   "mods": [
+    {
+     "a": "SpreadHipX",
+     "op": "mul",
+     "v": 1.1
+    },
+    {
+     "a": "SpreadHipY",
+     "op": "mul",
+     "v": 1.1
+    },
+    {
+     "a": "ADSSpeed",
+     "op": "mul",
+     "v": 1.15
+    }
+   ],
    "names": [
     "Botir"
    ],
@@ -7957,7 +8060,18 @@
     "Item.Attachment.Optic.Optic Magnified"
    ],
    "ge": "GE_AttachmentStat_Base_Optic_ACOG_Rifle_Scope",
-   "mods": [],
+   "mods": [
+    {
+     "a": "MagnifiedMaxKickHip",
+     "op": "override",
+     "v": 0.1
+    },
+    {
+     "a": "MagnifiedKickHip",
+     "op": "mul",
+     "v": 0.6
+    }
+   ],
    "names": [
     "AGO (3.00X)"
    ],
@@ -8022,7 +8136,18 @@
     "Item.Attachment.Optic.Optic Magnified"
    ],
    "ge": "GE_AttachmentStat_Base_Optic_HAMR_Leupold",
-   "mods": [],
+   "mods": [
+    {
+     "a": "MagnifiedMaxKickHip",
+     "op": "override",
+     "v": 0.1
+    },
+    {
+     "a": "MagnifiedKickHip",
+     "op": "mul",
+     "v": 0.6
+    }
+   ],
    "names": [
     "Hicro-2 (1.15X)"
    ],
@@ -8042,7 +8167,7 @@
     "Item.PrimaryWeapon",
     "Item.SecondaryWeapon.Revolvers"
    ],
-   "ge": null,
+   "ge": "GE_AttachmentStat_Base_Optic_Burris_Fast_Fire_3",
    "mods": [],
    "names": [
     "Boris 3",
@@ -8131,7 +8256,18 @@
     "Item.Attachment.Optic.Optic Magnified"
    ],
    "ge": "GE_AttachmentStat_Base_Optic_F8815X_Optic",
-   "mods": [],
+   "mods": [
+    {
+     "a": "MagnifiedMaxKickHip",
+     "op": "override",
+     "v": 0.1
+    },
+    {
+     "a": "MagnifiedKickHip",
+     "op": "mul",
+     "v": 0.6
+    }
+   ],
    "names": [
     "FX661 (2.00X)",
     "FX662 (2.00X)"
@@ -8153,7 +8289,18 @@
     "Item.Attachment.Optic.Optic Magnified"
    ],
    "ge": "GE_AttachmentStat_Base_Optic_HAMR_Leupold",
-   "mods": [],
+   "mods": [
+    {
+     "a": "MagnifiedMaxKickHip",
+     "op": "override",
+     "v": 0.1
+    },
+    {
+     "a": "MagnifiedKickHip",
+     "op": "mul",
+     "v": 0.6
+    }
+   ],
    "names": [
     "Hammer (2.50X)"
    ],
@@ -8485,7 +8632,7 @@
     "Item.PrimaryWeapon",
     "Item.Attachment.Optic.Optic Magnified"
    ],
-   "ge": "GE_AttachmentStat_Optics_MediumRange",
+   "ge": "GE_AttachmentStat_Base_Optic_BRAVO_4",
    "mods": [
     {
      "a": "MagnifiedMaxKickHip",
@@ -8518,7 +8665,18 @@
     "Item.Attachment.Optic.Optic Magnified"
    ],
    "ge": "GE_AttachmentStat_Base_Optic_Wilcox_G33",
-   "mods": [],
+   "mods": [
+    {
+     "a": "MagnifiedMaxKickHip",
+     "op": "override",
+     "v": 0.1
+    },
+    {
+     "a": "MagnifiedKickHip",
+     "op": "mul",
+     "v": 0.6
+    }
+   ],
    "names": [
     "Liwco (1.30X)"
    ],
@@ -8581,7 +8739,18 @@
     "Item.Attachment.Optic.Optic Magnified"
    ],
    "ge": "GE_AttachmentStat_Base_Optic_HAMR_Leupold",
-   "mods": [],
+   "mods": [
+    {
+     "a": "MagnifiedMaxKickHip",
+     "op": "override",
+     "v": 0.1
+    },
+    {
+     "a": "MagnifiedKickHip",
+     "op": "mul",
+     "v": 0.6
+    }
+   ],
    "names": [
     "Moricon (1.50X)"
    ],
@@ -8663,7 +8832,18 @@
     "Item.Attachment.Optic.Optic Magnified"
    ],
    "ge": "GE_AttachmentStat_Base_Optic_Tasco_Pro_Point_1x42",
-   "mods": [],
+   "mods": [
+    {
+     "a": "MagnifiedMaxKickHip",
+     "op": "override",
+     "v": 0.1
+    },
+    {
+     "a": "MagnifiedKickHip",
+     "op": "mul",
+     "v": 0.6
+    }
+   ],
    "names": [
     "Scota (1.25X)"
    ],
@@ -10649,7 +10829,7 @@
    "compat": [
     "Item.PrimaryWeapon.Assault Rifles.AR.M4A1"
    ],
-   "ge": null,
+   "ge": "GE_AttachmentStat_M4_Stock_1",
    "mods": [],
    "names": [
     "M4"
@@ -10666,8 +10846,39 @@
    "compat": [
     "Item.PrimaryWeapon.Assault Rifles.AR.M4A1"
    ],
-   "ge": null,
-   "mods": [],
+   "ge": "GE_AttachmentStat_M4_Stock_2",
+   "mods": [
+    {
+     "a": "HorizontalRecoil",
+     "op": "mul",
+     "v": 1.05
+    },
+    {
+     "a": "CameraRecoilStepHorizontal",
+     "op": "mul",
+     "v": 1.05
+    },
+    {
+     "a": "KickUp",
+     "op": "mul",
+     "v": 1.05
+    },
+    {
+     "a": "KickHip",
+     "op": "mul",
+     "v": 1.05
+    },
+    {
+     "a": "SwitchSpeed",
+     "op": "mul",
+     "v": 1.1
+    },
+    {
+     "a": "ADSSpeed",
+     "op": "mul",
+     "v": 1.1
+    }
+   ],
    "names": [
     "Steiner",
     "Blue",
@@ -10686,8 +10897,49 @@
    "compat": [
     "Item.PrimaryWeapon.Assault Rifles.AR.M4A1"
    ],
-   "ge": null,
-   "mods": [],
+   "ge": "GE_AttachmentStat_M4_Stock_4",
+   "mods": [
+    {
+     "a": "ADSSpeed",
+     "op": "mul",
+     "v": 1.25
+    },
+    {
+     "a": "CameraRecoilStepVertical",
+     "op": "mul",
+     "v": 1.15
+    },
+    {
+     "a": "CameraRecoilStepHorizontal",
+     "op": "mul",
+     "v": 1.1
+    },
+    {
+     "a": "SwitchSpeed",
+     "op": "mul",
+     "v": 1.25
+    },
+    {
+     "a": "KickUp",
+     "op": "mul",
+     "v": 1.05
+    },
+    {
+     "a": "KickHip",
+     "op": "mul",
+     "v": 1.05
+    },
+    {
+     "a": "VerticalRecoil",
+     "op": "mul",
+     "v": 1.15
+    },
+    {
+     "a": "HorizontalRecoil",
+     "op": "mul",
+     "v": 1.15
+    }
+   ],
    "names": [
     "Corner"
    ],
@@ -10704,8 +10956,39 @@
    "compat": [
     "Item.PrimaryWeapon.Assault Rifles.AR.M4A1"
    ],
-   "ge": null,
-   "mods": [],
+   "ge": "GE_AttachmentStat_M4_Stock_5",
+   "mods": [
+    {
+     "a": "HorizontalRecoil",
+     "op": "mul",
+     "v": 1.05
+    },
+    {
+     "a": "CameraRecoilStepHorizontal",
+     "op": "mul",
+     "v": 1.05
+    },
+    {
+     "a": "KickUp",
+     "op": "mul",
+     "v": 1.05
+    },
+    {
+     "a": "KickHip",
+     "op": "mul",
+     "v": 1.05
+    },
+    {
+     "a": "SwitchSpeed",
+     "op": "mul",
+     "v": 1.1
+    },
+    {
+     "a": "ADSSpeed",
+     "op": "mul",
+     "v": 1.1
+    }
+   ],
    "names": [
     "Horvath"
    ],
@@ -10722,8 +11005,49 @@
    "compat": [
     "Item.PrimaryWeapon.Assault Rifles.AR.M4A1"
    ],
-   "ge": null,
-   "mods": [],
+   "ge": "GE_AttachmentStat_M4_Stock_6",
+   "mods": [
+    {
+     "a": "CameraRecoilStepVertical",
+     "op": "mul",
+     "v": 0.9
+    },
+    {
+     "a": "CameraRecoilStepHorizontal",
+     "op": "mul",
+     "v": 0.9
+    },
+    {
+     "a": "KickUp",
+     "op": "mul",
+     "v": 0.9
+    },
+    {
+     "a": "KickHip",
+     "op": "mul",
+     "v": 0.9
+    },
+    {
+     "a": "ADSSpeed",
+     "op": "mul",
+     "v": 0.8
+    },
+    {
+     "a": "ReloadTime",
+     "op": "mul",
+     "v": 0.85
+    },
+    {
+     "a": "HorizontalRecoil",
+     "op": "mul",
+     "v": 0.9
+    },
+    {
+     "a": "VerticalRecoil",
+     "op": "mul",
+     "v": 0.9
+    }
+   ],
    "names": [
     "Tozan"
    ],
@@ -10740,8 +11064,49 @@
    "compat": [
     "Item.PrimaryWeapon.Assault Rifles.AR.M4A1"
    ],
-   "ge": null,
-   "mods": [],
+   "ge": "GE_AttachmentStat_M4_Stock_7",
+   "mods": [
+    {
+     "a": "ADSSpeed",
+     "op": "mul",
+     "v": 1.25
+    },
+    {
+     "a": "CameraRecoilStepVertical",
+     "op": "mul",
+     "v": 1.15
+    },
+    {
+     "a": "CameraRecoilStepHorizontal",
+     "op": "mul",
+     "v": 1.1
+    },
+    {
+     "a": "SwitchSpeed",
+     "op": "mul",
+     "v": 1.25
+    },
+    {
+     "a": "KickUp",
+     "op": "mul",
+     "v": 1.05
+    },
+    {
+     "a": "KickHip",
+     "op": "mul",
+     "v": 1.05
+    },
+    {
+     "a": "VerticalRecoil",
+     "op": "mul",
+     "v": 1.15
+    },
+    {
+     "a": "HorizontalRecoil",
+     "op": "mul",
+     "v": 1.15
+    }
+   ],
    "names": [
     "Hornet"
    ],
@@ -10758,8 +11123,39 @@
    "compat": [
     "Item.PrimaryWeapon.Assault Rifles.AR.M4A1"
    ],
-   "ge": null,
-   "mods": [],
+   "ge": "GE_AttachmentStat_M4_Stock_8",
+   "mods": [
+    {
+     "a": "CameraRecoilStepVertical",
+     "op": "mul",
+     "v": 0.9
+    },
+    {
+     "a": "CameraRecoilStepHorizontal",
+     "op": "mul",
+     "v": 0.9
+    },
+    {
+     "a": "KickUp",
+     "op": "mul",
+     "v": 0.9
+    },
+    {
+     "a": "KickHip",
+     "op": "mul",
+     "v": 0.9
+    },
+    {
+     "a": "ADSSpeed",
+     "op": "mul",
+     "v": 0.9
+    },
+    {
+     "a": "ReloadTime",
+     "op": "mul",
+     "v": 0.9
+    }
+   ],
    "names": [
     "Clint"
    ],
@@ -10776,8 +11172,39 @@
    "compat": [
     "Item.PrimaryWeapon.Assault Rifles.AR.M4A1"
    ],
-   "ge": null,
-   "mods": [],
+   "ge": "GE_AttachmentStat_M4_Stock_9",
+   "mods": [
+    {
+     "a": "HorizontalRecoil",
+     "op": "mul",
+     "v": 1.05
+    },
+    {
+     "a": "CameraRecoilStepHorizontal",
+     "op": "mul",
+     "v": 1.05
+    },
+    {
+     "a": "KickUp",
+     "op": "mul",
+     "v": 1.05
+    },
+    {
+     "a": "KickHip",
+     "op": "mul",
+     "v": 1.05
+    },
+    {
+     "a": "SwitchSpeed",
+     "op": "mul",
+     "v": 1.1
+    },
+    {
+     "a": "ADSSpeed",
+     "op": "mul",
+     "v": 1.1
+    }
+   ],
    "names": [
     "Kurtz"
    ],
@@ -10794,8 +11221,39 @@
    "compat": [
     "Item.PrimaryWeapon.Assault Rifles.AR.M4A1"
    ],
-   "ge": null,
-   "mods": [],
+   "ge": "GE_AttachmentStat_M4_Stock_10",
+   "mods": [
+    {
+     "a": "CameraRecoilStepVertical",
+     "op": "mul",
+     "v": 0.9
+    },
+    {
+     "a": "CameraRecoilStepHorizontal",
+     "op": "mul",
+     "v": 0.9
+    },
+    {
+     "a": "KickUp",
+     "op": "mul",
+     "v": 0.9
+    },
+    {
+     "a": "KickHip",
+     "op": "mul",
+     "v": 0.9
+    },
+    {
+     "a": "ADSSpeed",
+     "op": "mul",
+     "v": 0.9
+    },
+    {
+     "a": "ReloadTime",
+     "op": "mul",
+     "v": 0.9
+    }
+   ],
    "names": [
     "Tailor"
    ],
@@ -10812,8 +11270,49 @@
    "compat": [
     "Item.PrimaryWeapon.Assault Rifles.AR.M4A1"
    ],
-   "ge": null,
-   "mods": [],
+   "ge": "GE_AttachmentStat_M4_Stock_12",
+   "mods": [
+    {
+     "a": "ADSSpeed",
+     "op": "mul",
+     "v": 1.2
+    },
+    {
+     "a": "CameraRecoilStepVertical",
+     "op": "mul",
+     "v": 1.05
+    },
+    {
+     "a": "CameraRecoilStepHorizontal",
+     "op": "mul",
+     "v": 1.1
+    },
+    {
+     "a": "SwitchSpeed",
+     "op": "mul",
+     "v": 1.15
+    },
+    {
+     "a": "KickUp",
+     "op": "mul",
+     "v": 1.05
+    },
+    {
+     "a": "KickHip",
+     "op": "mul",
+     "v": 1.05
+    },
+    {
+     "a": "VerticalRecoil",
+     "op": "mul",
+     "v": 1.05
+    },
+    {
+     "a": "HorizontalRecoil",
+     "op": "mul",
+     "v": 1.05
+    }
+   ],
    "names": [
     "C14"
    ],
@@ -10830,7 +11329,7 @@
    "compat": [
     "Item.PrimaryWeapon.Assault Rifles.AR.M4A1"
    ],
-   "ge": null,
+   "ge": "GE_AttachmentStat_M4_Stock_13",
    "mods": [],
    "names": [
     "Ocean"
@@ -10848,8 +11347,49 @@
    "compat": [
     "Item.PrimaryWeapon.Assault Rifles.AR.M4A1"
    ],
-   "ge": null,
-   "mods": [],
+   "ge": "GE_AttachmentStat_M4_Stock_14",
+   "mods": [
+    {
+     "a": "ADSSpeed",
+     "op": "mul",
+     "v": 1.2
+    },
+    {
+     "a": "CameraRecoilStepVertical",
+     "op": "mul",
+     "v": 1.05
+    },
+    {
+     "a": "CameraRecoilStepHorizontal",
+     "op": "mul",
+     "v": 1.1
+    },
+    {
+     "a": "SwitchSpeed",
+     "op": "mul",
+     "v": 1.15
+    },
+    {
+     "a": "KickUp",
+     "op": "mul",
+     "v": 1.05
+    },
+    {
+     "a": "KickHip",
+     "op": "mul",
+     "v": 1.05
+    },
+    {
+     "a": "VerticalRecoil",
+     "op": "mul",
+     "v": 1.05
+    },
+    {
+     "a": "HorizontalRecoil",
+     "op": "mul",
+     "v": 1.05
+    }
+   ],
    "names": [
     "Mike"
    ],
@@ -13062,8 +13602,44 @@
     "Item.PrimaryWeapon.Assault Rifles",
     "Item.PrimaryWeapon.Machine pistol.BC5"
    ],
-   "ge": null,
-   "mods": [],
+   "ge": "GE_AttachmentStat_Stock_G3_1",
+   "mods": [
+    {
+     "a": "CameraRecoilStepVertical",
+     "op": "mul",
+     "v": 0.9
+    },
+    {
+     "a": "CameraRecoilStepHorizontal",
+     "op": "mul",
+     "v": 0.9
+    },
+    {
+     "a": "KickUp",
+     "op": "mul",
+     "v": 0.95
+    },
+    {
+     "a": "KickHip",
+     "op": "mul",
+     "v": 0.95
+    },
+    {
+     "a": "ADSSpeed",
+     "op": "mul",
+     "v": 0.9
+    },
+    {
+     "a": "ReloadTime",
+     "op": "mul",
+     "v": 0.9
+    },
+    {
+     "a": "RecoilRecoverySpeed",
+     "op": "mul",
+     "v": 1.1
+    }
+   ],
    "names": [
     "3GS",
     "Green",
@@ -14005,7 +14581,18 @@
     "Item.Attachment.Optic.Optic Magnified"
    ],
    "ge": "GE_AttachmentStat_Sniper_Optic_A-Jack_Scope",
-   "mods": [],
+   "mods": [
+    {
+     "a": "MagnifiedMaxKickHip",
+     "op": "override",
+     "v": 0.25
+    },
+    {
+     "a": "MagnifiedKickHip",
+     "op": "mul",
+     "v": 0.7
+    }
+   ],
    "names": [
     "Ackajio (3.00X)"
    ],
@@ -14027,7 +14614,7 @@
     "Item.PrimaryWeapon.Sniper Rifles",
     "Item.Attachment.Optic.Optic Magnified"
    ],
-   "ge": "GE_AttachmentStat_Optics_LongRange",
+   "ge": "GE_AttachmentStat_Sniper_Optic_Burris_XTR_14",
    "mods": [
     {
      "a": "MagnifiedMaxKickHip",
@@ -14061,7 +14648,18 @@
     "Item.Attachment.Optic.Optic Magnified"
    ],
    "ge": "GE_AttachmentStat_Sniper_Optic_G3SG1_Scope",
-   "mods": [],
+   "mods": [
+    {
+     "a": "MagnifiedMaxKickHip",
+     "op": "override",
+     "v": 0.25
+    },
+    {
+     "a": "MagnifiedKickHip",
+     "op": "mul",
+     "v": 0.7
+    }
+   ],
    "names": [
     "SGG (7.00X)"
    ],
@@ -14083,7 +14681,18 @@
     "Item.Attachment.Optic.Optic Magnified"
    ],
    "ge": "GE_AttachmentStat_Sniper_Optic_Leupold_RDS",
-   "mods": [],
+   "mods": [
+    {
+     "a": "MagnifiedMaxKickHip",
+     "op": "override",
+     "v": 0.1
+    },
+    {
+     "a": "MagnifiedKickHip",
+     "op": "mul",
+     "v": 0.6
+    }
+   ],
    "names": [
     "Replos (2.00X)"
    ],
@@ -14105,7 +14714,18 @@
     "Item.Attachment.Optic.Optic Magnified"
    ],
    "ge": "GE_AttachmentStat_Sniper_Optic_Riflescope_Hensoldt_FF",
-   "mods": [],
+   "mods": [
+    {
+     "a": "MagnifiedMaxKickHip",
+     "op": "override",
+     "v": 0.25
+    },
+    {
+     "a": "MagnifiedKickHip",
+     "op": "mul",
+     "v": 0.7
+    }
+   ],
    "names": [
     "Henfot (5.00X)"
    ],
@@ -14127,7 +14747,18 @@
     "Item.Attachment.Optic.Optic Magnified"
    ],
    "ge": "GE_AttachmentStat_Sniper_Optic_RETOTECH_Vudu_6x24",
-   "mods": [],
+   "mods": [
+    {
+     "a": "MagnifiedMaxKickHip",
+     "op": "override",
+     "v": 0.25
+    },
+    {
+     "a": "MagnifiedKickHip",
+     "op": "mul",
+     "v": 0.7
+    }
+   ],
    "names": [
     "VTU (5.00X)"
    ],
@@ -14148,7 +14779,18 @@
     "Item.Attachment.Optic.Optic Magnified"
    ],
    "ge": "GE_AttachmentStat_Sniper_Optic_Schmidt_Bender",
-   "mods": [],
+   "mods": [
+    {
+     "a": "MagnifiedMaxKickHip",
+     "op": "override",
+     "v": 0.25
+    },
+    {
+     "a": "MagnifiedKickHip",
+     "op": "mul",
+     "v": 0.7
+    }
+   ],
    "names": [
     "Schmender (8.00X)"
    ],
@@ -14170,7 +14812,18 @@
     "Item.Attachment.Optic.Optic Magnified"
    ],
    "ge": "GE_AttachmentStat_Sniper_Optic_Leupold_4x20_Scope",
-   "mods": [],
+   "mods": [
+    {
+     "a": "MagnifiedMaxKickHip",
+     "op": "override",
+     "v": 0.25
+    },
+    {
+     "a": "MagnifiedKickHip",
+     "op": "mul",
+     "v": 0.7
+    }
+   ],
    "names": [
     "XPS (4.00X)"
    ],
@@ -14192,7 +14845,18 @@
     "Item.Attachment.Optic.Optic Magnified"
    ],
    "ge": "GE_AttachmentStat_Sniper_Optic_PSO_6x36_Scope",
-   "mods": [],
+   "mods": [
+    {
+     "a": "MagnifiedMaxKickHip",
+     "op": "override",
+     "v": 0.25
+    },
+    {
+     "a": "MagnifiedKickHip",
+     "op": "mul",
+     "v": 0.7
+    }
+   ],
    "names": [
     "Posty (6.00X)"
    ],
@@ -14214,7 +14878,18 @@
     "Item.Attachment.Optic.Optic Magnified"
    ],
    "ge": "GE_AttachmentStat_Sniper_Optic_Scopemount_30mm",
-   "mods": [],
+   "mods": [
+    {
+     "a": "MagnifiedMaxKickHip",
+     "op": "override",
+     "v": 0.25
+    },
+    {
+     "a": "MagnifiedKickHip",
+     "op": "mul",
+     "v": 0.7
+    }
+   ],
    "names": [
     "SuperScope (3.00X)"
    ],
@@ -15012,7 +15687,18 @@
     "Item.Attachment.Optic.Optic Magnified"
    ],
    "ge": "GE_AttachmentStat_Sniper_Optic_A-Jack_Scope",
-   "mods": [],
+   "mods": [
+    {
+     "a": "MagnifiedMaxKickHip",
+     "op": "override",
+     "v": 0.25
+    },
+    {
+     "a": "MagnifiedKickHip",
+     "op": "mul",
+     "v": 0.7
+    }
+   ],
    "names": [
     "Ponsge"
    ],
@@ -15883,7 +16569,18 @@
     "Item.Attachment.Optic.Optic Magnified"
    ],
    "ge": "GE_AttachmentStat_Base_Optic_Prism_Scope",
-   "mods": [],
+   "mods": [
+    {
+     "a": "MagnifiedMaxKickHip",
+     "op": "override",
+     "v": 0.1
+    },
+    {
+     "a": "MagnifiedKickHip",
+     "op": "mul",
+     "v": 0.6
+    }
+   ],
    "names": [
     "Prism (1.40X)"
    ],
@@ -18248,7 +18945,7 @@
    "compat": [
     "Item.SecondaryWeapon.Revolvers"
    ],
-   "ge": null,
+   "ge": "GE_AttachmentStat_Revolver_Barrel_8",
    "mods": [],
    "names": [
     "8"
@@ -18357,8 +19054,14 @@
    "compat": [
     "Item.SecondaryWeapon.Revolvers"
    ],
-   "ge": null,
-   "mods": [],
+   "ge": "GE_AttachmentStat_Revolver_Grip_8",
+   "mods": [
+    {
+     "a": "ReloadTime",
+     "op": "mul",
+     "v": 1.05
+    }
+   ],
    "names": [
     "8"
    ],
