@@ -570,6 +570,8 @@ window.BODYCAM_DATA = {"build":"26654542","stats":{"Damage":{"name":"Bullet Dama
     const p = new URLSearchParams(location.hash.slice(1));
     const st = p.has('w') ? null : store.get('state', null);
     const w = C.weapon[p.get('w')] || (st && C.weapon[st.w]) || D.weapons.find(x => x.id === 'M4A1') || D.weapons[0];
+    // a shared build may use attachments the game hides: show them, otherwise they would silently drop out of the build
+    if (!C.opt.showHidden && [...p.values()].some(v => C.att[v] && C.att[v].avail === false)) $('showHidden').checked = C.opt.showHidden = true;
     setWeapon(w, false);
     const saved = st && st.w === w.id && st.build || null;
     for (const s of C.slots(w)) {
