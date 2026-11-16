@@ -3,7 +3,17 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Bodycam — build calculator</title>
+<title>Bodycam Build Calculator — weapon attachments &amp; stats</title>
+<meta name="description" content="Free unofficial build calculator for the Bodycam FPS game: pick a weapon, try attachments and compare recoil, ADS speed, reload time, hip fire spread and damage. Stats are extracted from the game files.">
+<link rel="canonical" href="https://neoden.github.io/bodycam-build-calc/">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://neoden.github.io/bodycam-build-calc/">
+<meta property="og:title" content="Bodycam Build Calculator — weapon attachments &amp; stats">
+<meta property="og:description" content="Free unofficial build calculator for the Bodycam FPS game: pick a weapon, try attachments and compare recoil, ADS speed, reload time, hip fire spread and damage. Stats are extracted from the game files.">
+<meta property="og:image" content="https://neoden.github.io/bodycam-build-calc/preview.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
 <style>
   :root { --bg:#14161a; --panel:#1c1f25; --panel2:#232730; --line:#313641; --text:#dfe3ea; --mute:#8b93a1;
           --good:#5fd08a; --bad:#f0706b; --acc:#e8b84a; --warn:#f0a03c; }
@@ -52,6 +62,7 @@
   .bar { display:flex; gap:8px; align-items:center; flex-wrap:wrap; margin-bottom:8px; } .bar input[type=search] { flex:1; min-width:120px; }
   details { margin-top:10px; } summary { cursor:pointer; color:var(--mute); } .note { font-size:12px; color:var(--mute); margin:6px 0 0; }
   .warnbox { border:1px solid var(--warn); border-radius:8px; padding:6px 9px; margin-bottom:10px; font-size:12px; }
+  footer { padding:4px 16px 20px; max-width:900px; } footer h2 { margin-bottom:4px; }
   label.chk { display:flex; gap:6px; align-items:center; font-size:12px; color:var(--mute); }
 </style>
 </head>
@@ -113,6 +124,10 @@
     </details>
   </section>
 </main>
+<footer>
+  <h2 data-i18n="aboutTitle">About the Bodycam build calculator</h2>
+  <p class="note" data-i18n="aboutSite">Bodycam Build Calculator is a free, unofficial weapon build planner for Bodycam, the multiplayer FPS game by Reissad Studio. Pick a weapon, try attachments — barrels, muzzles, grips, stocks, magazines, optics — and see how they change recoil, ADS speed, reload time, equip speed, hip fire spread and damage. It can also find the best build for a goal such as minimum recoil or fastest ADS, save builds, compare them and share a build as a link. All stats are extracted from the game files.</p>
+</footer>
 <script src="data.js"></script>
 <script src="i18n.js"></script>
 <script src="core.js"></script>
